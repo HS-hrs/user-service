@@ -5,6 +5,12 @@ spring:
     ansi:
       enabled: always
   config:
-    import: optional:configserver:http://localhost:8888/user-service-config
+    import: optional:configserver:http://localhost:8888
+
+    
 server:
-  port: 8081
+  port: 0
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${spring.application.instance_id:${random.value}}
