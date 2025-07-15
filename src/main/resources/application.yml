@@ -6,9 +6,13 @@ spring:
       enabled: always
   config:
     import: optional:configserver:http://localhost:8888
+
 server:
-  port: 8082
+  port: 8084
 
 eureka:
   instance:
-    instance-id: ${spring.application.name}-${spring.application.instance_id:${random.value}}
+    instance-id: ${spring.application.name}
+
+jwt:
+  secret: ${JWT_SECRET}
