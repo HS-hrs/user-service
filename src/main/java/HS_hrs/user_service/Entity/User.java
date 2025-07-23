@@ -30,31 +30,39 @@ public class User {
   private Integer userId; 
   // MSA에서 사용하는 사용자 식별자(서비스 연동할 때 사용)
   
-  @Column(nullable = false, length = 50, unique = true)
+  @Column(nullable = true, length = 50, unique = true)
   private String username;
 
-  @Column(nullable = false, length = 255)
+  @Column(nullable = true, length = 255)
   private String password;
 
-  @Column(unique = true, nullable = false, length = 100)
+  @Column(unique = true, nullable = true, length = 100)
   private String email;
 
   @Column(name = "phone_number", length = 20)
   private String phoneNumber;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "user_type", nullable = false)
+  @Column(name = "user_type", nullable = true)
   private UserType userType; 
   // admin, employee
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "employment_status", nullable = false)
+  @Column(name = "employment_status", nullable = true)
   private EmploymentStatus employmentStatus; 
   // employed, resigned, on_leave
 
-  @Column(name = "created_at", nullable = false, updatable = false)
+  @Column(name = "created_at", nullable = true, updatable = false)
   private LocalDateTime createdAt;
+  // 아이디 생성일
 
-  @Column(name = "updated_at", nullable = false)
+  @Column(name = "updated_at", nullable = true)
   private LocalDateTime updatedAt;
+
+
+  public static User createWithUserId(Integer userId) {
+    User user = new User();
+    user.userId = userId;
+    return user;
+  }
 }
